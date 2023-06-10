@@ -7,17 +7,17 @@ const mercadopago = require("mercadopago");
 
 // REPLACE WITH YOUR ACCESS TOKEN AVAILABLE IN: https://developers.mercadopago.com/panel
 mercadopago.configure({
-  access_token: "TEST-1662046653454430-052619-b3c586b2f48964b1a0ad2c95867da2b3-139879099", // ACCES-TOKEN
+  access_token: "TEST-1662046653454430-052619-b3c586b2f48964b1a0ad2c95867da2b3-139879099", // ACCES-TOKEN de prueba
 });
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "../front-end/ong-front/src/app")));
+app.use(express.static(path.join(__dirname, "../front-end/ong-front/dist/ong-front")));
 app.use(cors());
 
-app.get("/", function () {
-  path.resolve(__dirname, "..", "front-end/ong-front/src/app", "app.component.html");
+app.get("*", function () {
+  path.resolve(__dirname, "../front-end/ong-front/dist/ong-front/index.html"); // Aqui pegandole a la ruta en dist que es el folder del deploy
 });
 
 app.post("/create_preference", (req, res) => {
@@ -30,8 +30,8 @@ app.post("/create_preference", (req, res) => {
       },
     ],
     back_urls: {
-      success: "http://localhost:8080",
-      failure: "http://localhost:8080",
+      success: "https://www.tudominio.com/success", // Aqui pegandole a la ruta en dist que es el folder del deploy
+      failure: "https://www.tudominio.com/failure",
       pending: "",
     },
     auto_return: "approved",
