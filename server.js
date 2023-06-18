@@ -5,19 +5,32 @@ const path = require("path");
 
 const mercadopago = require("mercadopago");
 
-// REPLACE WITH YOUR ACCESS TOKEN AVAILABLE IN: https://developers.mercadopago.com/panel
+// ACCESS TOKEN
+PRODUCTION_LUIS: string =
+  "APP_USR-8783793935974297-061721-515643ca4b2ade8f2fa2b43225ba97a1-48601413";
+TEST_CREDENTIAL: string =
+  "TEST-1662046653454430-052619-b3c586b2f48964b1a0ad2c95867da2b3-139879099";
 mercadopago.configure({
-  access_token: "TEST-1662046653454430-052619-b3c586b2f48964b1a0ad2c95867da2b3-139879099", // ACCES-TOKEN
+  access_token: TEST_CREDENTIAL,
 });
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "../front-end/ong-front/src/app")));
+app.use(
+  express.static(
+    path.join(__dirname, "../landingong/src/app/landing/componentes")
+  )
+);
 app.use(cors());
 
 app.get("/", function () {
-  path.resolve(__dirname, "..", "front-end/ong-front/src/app", "app.component.html");
+  path.resolve(
+    __dirname,
+    "..",
+    "landingong/src/app/landing/componentes/",
+    "boton-de-pago.component.html"
+  );
 });
 
 app.post("/create_preference", (req, res) => {
