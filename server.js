@@ -43,8 +43,8 @@ app.post("/create_preference", (req, res) => {
       },
     ],
     back_urls: {
-      success: "http://localhost:8080",
-      failure: "http://localhost:8080",
+      success: "https://www.tudominio.com/success", // Aqui pegandole a la ruta en dist que es el folder del deploy
+      failure: "https://www.tudominio.com/failure",
       pending: "",
     },
     auto_return: "approved",
