@@ -5,9 +5,12 @@ const path = require("path");
 require('dotenv').config();
 const mercadopago = require("mercadopago");
 
+const routing_deploy = "../front-end/ong-front/dist/ong-front/index.html";
+const routing_use = "../front-end/ong-front/dist/ong-front";
+
 // ACCESS TOKEN
 mercadopago.configure({
-  access_token: process.env.TOKEN_TEST.toString(),
+  access_token: process.env.TOKEN_FINAL.toString(),
 });
 
 app.use(express.urlencoded({ extended: false }));
@@ -15,7 +18,7 @@ app.use(express.json());
 
 app.use(
   express.static(
-    path.join(__dirname, "../landingong/src/app/landing/componentes")
+    path.join(__dirname, routing_use)
   )
 );
 app.use(cors());
@@ -23,9 +26,7 @@ app.use(cors());
 app.get("/", function () {
   path.resolve(
     __dirname,
-    "..",
-    "landingong/src/app/landing/componentes/",
-    "boton-de-pago.component.html"
+    routing_deploy
   );
 });
 
